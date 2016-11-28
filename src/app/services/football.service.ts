@@ -30,8 +30,10 @@ export class FootballService {
             .map((res: Response) => res.json()).catch(this.handleError);;
     }
 
-    get(url):Promise<any>{
+    get(url): Promise<any> {
         this.url = url;
+        if (environment.production)
+            this.url = this.url.replace(/^http:\/\//i, 'https://');
         return this._http.get(this.url, this.get_options()).toPromise()
             .then((res: Response) => res.json()).catch(this.handleError);
     }
