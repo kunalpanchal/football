@@ -1,0 +1,28 @@
+<table style="margin-left:20px" *ngIf="page=='standing'" class="striped bordered responsive-table">
+    <thead>
+        <tr>
+            <th></th>
+            <th data-field="name">Team Name</th>
+            <th data-field="played">Played</th>
+            <th data-field="Wins">Wins</th>
+            <th data-field="Losses">Losses</th>
+            <th data-field="Draws">Draws</th>
+            <th data-field="Goals">Goals</th>
+            <th data-field="Points">Points</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let item of body.standing let i=index" (click)="teamSelc(i,item.teamName)">
+            <td><img width="30px" [attr.src]="item.crestURI"></td>
+            <td>{{item.teamName}}</td>
+            <td>{{item.playedGames}}</td>
+            <td>{{item.wins}}</td>
+            <td>{{item.losses}}</td>
+            <td>{{item.draws}}</td>
+            <td>{{item.goals}}</td>
+            <td><b>{{item.points}}</b></td>
+        </tr>
+    </tbody>
+</table>
+<team *ngIf="page=='team'" [url]="url"></team>

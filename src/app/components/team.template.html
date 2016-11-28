@@ -1,0 +1,60 @@
+<div class="row">
+    <div class="card-panel green">
+        <div *ngIf="team">
+            <img style="width:200px" [attr.src]="team.crestUrl">
+            <h1 style="float:right;">{{team.code}}</h1>
+            <h3 style="float:right;;margin:100px;">{{team.shortName}}</h3>
+            <h6>{{team.name}}</h6>
+
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="card-panel teal">
+        <h3>Players</h3>
+        <table *ngIf="players" class="responsive-table">
+            <thead>
+                <tr style="color:white;">
+                    <th data-field="name">Name</th>
+                    <th data-field="nationality">Nationality</th>
+                    <th data-field="position">Position</th>
+                    <th data-field="marketValue">Market Value</th>
+                    <th data-field="jerseyNumber">Jersey Number</th>
+                    <th data-field="dateOfBirth">DOM</th>
+                    <th data-field="contractUntil">Contract Until</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let player of players let i=index">
+                    <td><b>{{player.name}}</b></td>
+                    <td>{{player.nationality}}</td>
+                    <td>{{player.position}}</td>
+                    <td>{{player.marketValue}}</td>
+                    <td>{{player.jerseyNumber}}</td>
+                    <td>{{player.dateOfBirth}}</td>
+                    <td>{{player.contractUntil}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="card-panel blue">
+        <h3>Next 5 Fixtures</h3>
+        <div *ngIf="closestFixtures">
+            <div class="row" *ngFor="let date of closestFixtures let i=index">
+                <div style="height:150px" class="card-panel white" *ngIf="i<5">
+                    {{date}}
+                    <h4 style="float:right;" class="time_{{i}}"></h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h1 id="time"></h1>
