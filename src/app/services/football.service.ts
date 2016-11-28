@@ -1,7 +1,7 @@
+import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import { Response, Headers, RequestOptions, Http } from '@angular/http';
 // import { Observable } from 'rxjs/Observable';
-
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 
@@ -19,13 +19,13 @@ export class FootballService {
     }
 
     getCompetitons(year: number) {
-        this.url = 'http://api.football-data.org/v1/competitions/?season=' + year;
+        this.url = environment.PROTOCOL + 'api.football-data.org/v1/competitions/?season=' + year;
         return this._http.get(this.url, this.get_options())
             .map((res: Response) => res.json()).catch(this.handleError);;
     }
 
     getLeagueTable(urlExtension) {
-        this.url = 'http://api.football-data.org/v1/competitions/' + urlExtension;
+        this.url = environment.PROTOCOL + 'api.football-data.org/v1/competitions/' + urlExtension;
         return this._http.get(this.url, this.get_options())
             .map((res: Response) => res.json()).catch(this.handleError);;
     }
