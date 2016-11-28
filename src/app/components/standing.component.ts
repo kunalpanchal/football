@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { Component, Input, EventEmitter, Output } from '@angular/core';
 import { FootballService } from '../services/football.service';
 
@@ -12,8 +13,11 @@ export class StandingComponent {
     url: string;
     constructor(private footballService: FootballService) { }
     teamSelc(index: any, teamName: any) {
-        this.page = 'team';
+
         this.url = this.body.standing[index]._links.team.href;
+        if (environment.production)
+            this.url = this.url.replace(/^http:\/\//i, 'https://');
+        this.page = 'team';
         this.title.emit(teamName);
     }
 }
