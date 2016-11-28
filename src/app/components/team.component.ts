@@ -14,16 +14,16 @@ export class TeamComponent implements OnInit {
 
     }
     ngOnInit() {
-        this.footballService.get(this.url).subscribe(body => { 
+        this.footballService.get(this.url).then(body => { 
             this.team = body;
-            this.footballService.get(this.team._links.players.href).subscribe(body => {
+            this.footballService.get(this.team._links.players.href).then(body => {
                 this.players = body.players;
             },
                 (error: any) => {
                     console.log('Oops a error occured', error);
                 });
 
-            this.footballService.get(this.team._links.fixtures.href).subscribe(body => {
+            this.footballService.get(this.team._links.fixtures.href).then(body => {
                 let allFixtureDates: any = [];
                 for (let fixture of body.fixtures) {
                     allFixtureDates.push(new Date(fixture.date));
@@ -42,18 +42,13 @@ export class TeamComponent implements OnInit {
                         jQuery('.time_' + i).countdown({ until: this.closestFixtures[i] });
                     }
                 }, 1000);
-
-
             },
                 (error: any) => {
                     console.log('Oops a error occured', error);
                 });
-
-        },
+   },
             (error: any) => {
                 console.log('Oops a error occured', error);
             });
     }
-
-
 }

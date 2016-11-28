@@ -30,10 +30,10 @@ export class FootballService {
             .map((res: Response) => res.json()).catch(this.handleError);;
     }
 
-    get(url) {
+    get(url):Promise<any>{
         this.url = url;
-        return this._http.get(this.url, this.get_options())
-            .map((res: Response) => res.json()).catch(this.handleError);;
+        return this._http.get(this.url, this.get_options()).toPromise()
+            .then((res: Response) => res.json()).catch(this.handleError);
     }
 
 
